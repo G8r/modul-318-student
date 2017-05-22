@@ -138,27 +138,6 @@
   <metadata name="bGleis.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="vonStation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bisStation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dauer.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="abfahrt.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ankunft.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="vGleis.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="bGleis.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="swapButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -177,6 +156,16 @@
         lgPsA7HM6XKG+Ekekyn0KSlSToNNV5c1xKsylV0lDSmncVu6zIg35SJwJR1SToNNV5Y5t7P3yWmVfuRs
         s1nSGOU0uPuwzNlnY5+7FRfk43KRUMyY5WzCxZt9RVbyeCrmroX8zEMgzzmz3sqLoiiKoiiKoiiKoij+
         WVarvwTm6YWCsfm2AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="backBTN.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABGdBTUEAALGPC/xhBQAAAOxJREFUeF7t
+        2VkKwkAQRdEswAU47tRpl85r0VeYhqCdVH3kQ1P3wIPg5wWjdDcAAAAAAAAA8JOO7VBhYZ7tiPShG4dI
+        H2pxytJHGopjO2kzLaVInLmWkhfnrBGnZxdtoaUUibPUUvLiXDXi9OymrbSUiDPAi3PX1lpKxBngxXlo
+        Gy0lL86/bVRTi2MbzRTj2EZDoAC+YgG8pAO8SKl/5gsiBXiRUv+bLogUQKQAL1LqY4+CSAFeJDt6JZJW
+        i1OW+ny6IFKAF8mugdJePRdDkbYapBZpp6GjG2lvH+CbRTq8HwEAAAAAAABgeprmBTzQEyYbkSYGAAAA
+        AElFTkSuQmCC
 </value>
   </data>
 </root>

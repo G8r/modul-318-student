@@ -41,14 +41,15 @@
             this.ankunft = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vGleis = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bGleis = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verbindungenDtp = new System.Windows.Forms.DateTimePicker();
+            this.verbindungenDTP = new System.Windows.Forms.DateTimePicker();
             this.verbindungenDatumLbl = new System.Windows.Forms.Label();
             this.verbindungenVonTB = new System.Windows.Forms.TextBox();
             this.verbindungenBisTB = new System.Windows.Forms.TextBox();
-            this.autoCompleteVerbindungenLV = new System.Windows.Forms.ListView();
-            this.autoCompleteVerbindungenBis = new System.Windows.Forms.ListView();
-            this.zeitPicker = new System.Windows.Forms.DateTimePicker();
+            this.autoCompleteVerbindungenVonLV = new System.Windows.Forms.ListView();
+            this.autoCompleteVerbindungenBisLV = new System.Windows.Forms.ListView();
+            this.zeitPickerDTP = new System.Windows.Forms.DateTimePicker();
             this.swapButton = new System.Windows.Forms.Button();
+            this.backBTN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.verbindungenSuchresultatDG)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,8 +91,9 @@
             this.verbindungSuchenBtn.UseVisualStyleBackColor = true;
             this.verbindungSuchenBtn.Click += new System.EventHandler(this.verbindungSuchenBtn_Click);
             this.verbindungSuchenBtn.Enter += new System.EventHandler(this.verbindungSuchenBTNEnter);
+            this.verbindungSuchenBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungSuchenBtnKeyDown);
             // 
-            // verbindungenSuchresultatDg
+            // verbindungenSuchresultatDG
             // 
             this.verbindungenSuchresultatDG.BackgroundColor = System.Drawing.Color.DimGray;
             this.verbindungenSuchresultatDG.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -107,7 +109,7 @@
             this.vGleis,
             this.bGleis});
             this.verbindungenSuchresultatDG.Location = new System.Drawing.Point(38, 512);
-            this.verbindungenSuchresultatDG.Name = "verbindungenSuchresultatDg";
+            this.verbindungenSuchresultatDG.Name = "verbindungenSuchresultatDG";
             this.verbindungenSuchresultatDG.RowHeadersVisible = false;
             this.verbindungenSuchresultatDG.RowHeadersWidth = 300;
             this.verbindungenSuchresultatDG.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -154,13 +156,14 @@
             this.bGleis.HeaderText = "Gleis Ankunft:";
             this.bGleis.Name = "bGleis";
             // 
-            // verbindungenDtp
+            // verbindungenDTP
             // 
-            this.verbindungenDtp.Location = new System.Drawing.Point(330, 338);
-            this.verbindungenDtp.MinDate = new System.DateTime(2017, 5, 17, 0, 0, 0, 0);
-            this.verbindungenDtp.Name = "verbindungenDtp";
-            this.verbindungenDtp.Size = new System.Drawing.Size(200, 31);
-            this.verbindungenDtp.TabIndex = 2;
+            this.verbindungenDTP.Location = new System.Drawing.Point(330, 338);
+            this.verbindungenDTP.MinDate = new System.DateTime(2017, 5, 17, 0, 0, 0, 0);
+            this.verbindungenDTP.Name = "verbindungenDTP";
+            this.verbindungenDTP.Size = new System.Drawing.Size(200, 31);
+            this.verbindungenDTP.TabIndex = 2;
+            this.verbindungenDTP.Enter += new System.EventHandler(this.verbindungenDTPEnter);
             // 
             // verbindungenDatumLbl
             // 
@@ -190,32 +193,32 @@
             this.verbindungenBisTB.Enter += new System.EventHandler(this.benutzerSteuerungEnter);
             this.verbindungenBisTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungenBisTBKeyDown);
             // 
-            // autoCompleteVerbindungen
+            // autoCompleteVerbindungenVonLV
             // 
-            this.autoCompleteVerbindungenLV.Location = new System.Drawing.Point(330, 282);
-            this.autoCompleteVerbindungenLV.Name = "autoCompleteVerbindungen";
-            this.autoCompleteVerbindungenLV.Size = new System.Drawing.Size(356, 324);
-            this.autoCompleteVerbindungenLV.TabIndex = 9;
-            this.autoCompleteVerbindungenLV.UseCompatibleStateImageBehavior = false;
-            this.autoCompleteVerbindungenLV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungenVonKeyDown);
-            this.autoCompleteVerbindungenLV.MouseClick += new System.Windows.Forms.MouseEventHandler(this.autoCompleteVerbindungenMouseClick);
+            this.autoCompleteVerbindungenVonLV.Location = new System.Drawing.Point(330, 282);
+            this.autoCompleteVerbindungenVonLV.Name = "autoCompleteVerbindungenVonLV";
+            this.autoCompleteVerbindungenVonLV.Size = new System.Drawing.Size(356, 324);
+            this.autoCompleteVerbindungenVonLV.TabIndex = 9;
+            this.autoCompleteVerbindungenVonLV.UseCompatibleStateImageBehavior = false;
+            this.autoCompleteVerbindungenVonLV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungenVonKeyDown);
+            this.autoCompleteVerbindungenVonLV.MouseClick += new System.Windows.Forms.MouseEventHandler(this.autoCompleteVerbindungenMouseClick);
             // 
-            // autoCompleteVerbindungenBis
+            // autoCompleteVerbindungenBisLV
             // 
-            this.autoCompleteVerbindungenBis.Location = new System.Drawing.Point(772, 282);
-            this.autoCompleteVerbindungenBis.Name = "autoCompleteVerbindungenBis";
-            this.autoCompleteVerbindungenBis.Size = new System.Drawing.Size(356, 324);
-            this.autoCompleteVerbindungenBis.TabIndex = 10;
-            this.autoCompleteVerbindungenBis.UseCompatibleStateImageBehavior = false;
-            this.autoCompleteVerbindungenBis.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungenBisTBKeyDown);
-            this.autoCompleteVerbindungenBis.MouseClick += new System.Windows.Forms.MouseEventHandler(this.autoCompleteVerbindungenBisMouseClick);
+            this.autoCompleteVerbindungenBisLV.Location = new System.Drawing.Point(772, 282);
+            this.autoCompleteVerbindungenBisLV.Name = "autoCompleteVerbindungenBisLV";
+            this.autoCompleteVerbindungenBisLV.Size = new System.Drawing.Size(356, 324);
+            this.autoCompleteVerbindungenBisLV.TabIndex = 10;
+            this.autoCompleteVerbindungenBisLV.UseCompatibleStateImageBehavior = false;
+            this.autoCompleteVerbindungenBisLV.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungenBisTBKeyDown);
+            this.autoCompleteVerbindungenBisLV.MouseClick += new System.Windows.Forms.MouseEventHandler(this.autoCompleteVerbindungenBisMouseClick);
             // 
-            // zeitPicker
+            // zeitPickerDTP
             // 
-            this.zeitPicker.Location = new System.Drawing.Point(563, 338);
-            this.zeitPicker.Name = "zeitPicker";
-            this.zeitPicker.Size = new System.Drawing.Size(123, 31);
-            this.zeitPicker.TabIndex = 3;
+            this.zeitPickerDTP.Location = new System.Drawing.Point(563, 338);
+            this.zeitPickerDTP.Name = "zeitPickerDTP";
+            this.zeitPickerDTP.Size = new System.Drawing.Size(123, 31);
+            this.zeitPickerDTP.TabIndex = 3;
             // 
             // swapButton
             // 
@@ -229,18 +232,31 @@
             this.swapButton.UseVisualStyleBackColor = true;
             this.swapButton.Click += new System.EventHandler(this.stationenWechselnClick);
             // 
+            // backBTN
+            // 
+            this.backBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.backBTN.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("backBTN.BackgroundImage")));
+            this.backBTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.backBTN.Location = new System.Drawing.Point(4, 4);
+            this.backBTN.Name = "backBTN";
+            this.backBTN.Size = new System.Drawing.Size(75, 62);
+            this.backBTN.TabIndex = 5;
+            this.backBTN.UseVisualStyleBackColor = false;
+            this.backBTN.Click += new System.EventHandler(this.backBTNClick);
+            // 
             // Verbindungen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.backBTN);
             this.Controls.Add(this.swapButton);
-            this.Controls.Add(this.autoCompleteVerbindungenLV);
-            this.Controls.Add(this.zeitPicker);
-            this.Controls.Add(this.autoCompleteVerbindungenBis);
+            this.Controls.Add(this.autoCompleteVerbindungenVonLV);
+            this.Controls.Add(this.zeitPickerDTP);
+            this.Controls.Add(this.autoCompleteVerbindungenBisLV);
             this.Controls.Add(this.verbindungenBisTB);
             this.Controls.Add(this.verbindungenVonTB);
             this.Controls.Add(this.verbindungenDatumLbl);
-            this.Controls.Add(this.verbindungenDtp);
+            this.Controls.Add(this.verbindungenDTP);
             this.Controls.Add(this.verbindungenSuchresultatDG);
             this.Controls.Add(this.verbindungSuchenBtn);
             this.Controls.Add(this.verbindungenBisLbl);
@@ -250,6 +266,7 @@
             this.MinimumSize = new System.Drawing.Size(1478, 927);
             this.Name = "Verbindungen";
             this.Size = new System.Drawing.Size(1478, 927);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainPanelMouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.verbindungenSuchresultatDG)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -263,7 +280,7 @@
         private System.Windows.Forms.Label verbindungenBisLbl;
         private System.Windows.Forms.Button verbindungSuchenBtn;
         private System.Windows.Forms.DataGridView verbindungenSuchresultatDG;
-        private System.Windows.Forms.DateTimePicker verbindungenDtp;
+        private System.Windows.Forms.DateTimePicker verbindungenDTP;
         private System.Windows.Forms.Label verbindungenDatumLbl;
         private System.Windows.Forms.DataGridViewTextBoxColumn vonStation;
         private System.Windows.Forms.DataGridViewTextBoxColumn bisStation;
@@ -274,10 +291,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bGleis;
         private System.Windows.Forms.TextBox verbindungenVonTB;
         private System.Windows.Forms.TextBox verbindungenBisTB;
-        private System.Windows.Forms.ListView autoCompleteVerbindungenLV;
-        private System.Windows.Forms.ListView autoCompleteVerbindungenBis;
-        private System.Windows.Forms.DateTimePicker zeitPicker;
+        private System.Windows.Forms.ListView autoCompleteVerbindungenVonLV;
+        private System.Windows.Forms.ListView autoCompleteVerbindungenBisLV;
+        private System.Windows.Forms.DateTimePicker zeitPickerDTP;
         private System.Windows.Forms.Button swapButton;
+        private System.Windows.Forms.Button backBTN;
     }
 
    

@@ -22,7 +22,8 @@ namespace SwissPublicTransport
         public Abfahrtstafeln(Panel mainPanel)
         {
             InitializeComponent();
-            autoCompleteAbfahrtstafelnTB.Visible = false;
+            autoCompleteAbfahrtstafelnLV.View = View.SmallIcon;
+            autoCompleteAbfahrtstafelnLV.Visible = false;
             abfahrtstafelnSuchresultatDG.Visible = false;
         }
 
@@ -36,7 +37,7 @@ namespace SwissPublicTransport
             try
             {
                 TextBox senderTB = sender as TextBox;
-                autoCompleteAbfahrtstafelnTB.Items.Clear();
+                autoCompleteAbfahrtstafelnLV.Items.Clear();
 
                 if (senderTB.Text.Length > 1)
                 {
@@ -44,16 +45,16 @@ namespace SwissPublicTransport
 
                     foreach (Station station in stationRes.StationList)
                     {
-                        autoCompleteAbfahrtstafelnTB.Items.Add(station.Name);
+                        autoCompleteAbfahrtstafelnLV.Items.Add(station.Name);
                     }
-                    if (autoCompleteAbfahrtstafelnTB.Items.Count > 0)
+                    if (autoCompleteAbfahrtstafelnLV.Items.Count > 0)
                     {
-                        autoCompleteAbfahrtstafelnTB.Visible = true;
+                        autoCompleteAbfahrtstafelnLV.Visible = true;
                     }
                 }
                 else
                 {
-                    autoCompleteAbfahrtstafelnTB.Visible = false;
+                    autoCompleteAbfahrtstafelnLV.Visible = false;
                 }
             }
             catch (System.Net.WebException)
@@ -61,50 +62,102 @@ namespace SwissPublicTransport
                 //WebExpection wird nicht ausgegeben, da es für den Arbeitsfluss störender wäre.
                 //Es müsste mit einem asynchronen Task gelöst werden, da ich damit aber noch zu wenig vertraut bin. Löse ich es vorerst auf diese Weise.
             }
-
         }
 
         private void abfahrtstafelSuchenBTNClick(object sender, EventArgs e)
         {
-            autoCompleteAbfahrtstafelnTB.Visible = false;
-            var stationen = _transportAPI.GetStations(abfahrtstafelVonTB.Text);
-            string stationenId = stationen.StationList[0].Id;
+            //Für die Optik das leere DataGridView verstecken im Falle, dass mehere Suchabfragen aufeinander erfolgen
+            autoCompleteAbfahrtstafelnLV.Visible = false;
 
-            var suchResultat = _transportAPI.GetStationBoard(abfahrtstafelVonTB.Text, stationenId).Entries;
-
-            foreach (var station in suchResultat)
+            if(abfahrtstafelVonTB.Text.Length > 0)
             {
-                DateTime abfahrtZeitDT = Convert.ToDateTime(station.Stop.Departure);
-                String abfahrtsZeitST = abfahrtZeitDT.ToString("HH:mm");
+                var stationen = _transportAPI.GetStations(abfahrtstafelVonTB.Text);
+                string stationenId = stationen.StationList[0].Id;
 
-                DataGridViewRow rowDGR = new DataGridViewRow();
+                var suchResultat = _transportAPI.GetStationBoard(abfahrtstafelVonTB.Text, stationenId).Entries;
 
-                rowDGR.CreateCells(abfahrtstafelnSuchresultatDG);
-                rowDGR.Cells[0].Value = station.Category;
-                rowDGR.Cells[1].Value = abfahrtsZeitST;
-                rowDGR.Cells[2].Value = station.To;
+                foreach (var station in suchResultat)
+                {
+                    DateTime abfahrtZeitDT = Convert.ToDateTime(station.Stop.Departure);
+                    String abfahrtsZeitST = abfahrtZeitDT.ToString("HH:mm");
 
-                abfahrtstafelnSuchresultatDG.Rows.Add(rowDGR);
-                abfahrtstafelnSuchresultatDG.Visible = true;
+                    DataGridViewRow rowDGR = new DataGridViewRow();
+
+                    rowDGR.CreateCells(abfahrtstafelnSuchresultatDG);
+                    rowDGR.Cells[0].Value = station.Category;
+                    rowDGR.Cells[1].Value = abfahrtsZeitST;
+                    rowDGR.Cells[2].Value = station.To;
+
+                    abfahrtstafelnSuchresultatDG.Rows.Add(rowDGR);
+                }
+                if (suchResultat == null)
+                {
+                    MessageBox.Show("Es wurden keine Ergebnisse gefunden, versuchen sie es nochmals");
+                }
+                else
+                {
+                    abfahrtstafelnSuchresultatDG.Visible = true;
+                }
             }
         }
 
         private void autoCompleteAnsichtAbfahrtstafelnMouseClick(object sender, MouseEventArgs e)
         {
-            abfahrtstafelVonTB.Text = autoCompleteAbfahrtstafelnTB.SelectedItems[0].ToString();
+            abfahrtstafelVonTB.Text = autoCompleteAbfahrtstafelnLV.SelectedItems[0].ToString();
         }
 
         private void abfahrtstafelVonTBKeyDown(object sender, KeyEventArgs e) 
         {
-            if (e.KeyCode == Keys.Down && autoCompleteAbfahrtstafelnTB.Items.Count > 0)
+            if (e.KeyCode == Keys.Down && autoCompleteAbfahrtstafelnLV.Items.Count > 0)
             {
-                autoCompleteAbfahrtstafelnTB.Select();
-                autoCompleteAbfahrtstafelnTB.Items[0].Selected = true;
+                autoCompleteAbfahrtstafelnLV.Select();
+                autoCompleteAbfahrtstafelnLV.Items[0].Selected = true;
             }
-            if (e.KeyCode == Keys.Enter && autoCompleteAbfahrtstafelnTB.Items.Count > 0)
+            if (e.KeyCode == Keys.Tab)
             {
-                abfahrtstafelVonTB.Text = autoCompleteAbfahrtstafelnTB.FocusedItem.Text.ToString();
+                autoCompleteAbfahrtstafelnLV.Visible = false;
+                abfahrtstafelSuchenBtn.Focus();
             }
+            if (e.KeyCode == Keys.Enter && autoCompleteAbfahrtstafelnLV.Items.Count > 0 && autoCompleteAbfahrtstafelnLV.SelectedItems.Count > 0)
+            {
+                abfahrtstafelVonTB.Text = autoCompleteAbfahrtstafelnLV.FocusedItem.Text.ToString();
+                autoCompleteAbfahrtstafelnLV.Visible = false;
+                verbindungenDTP.Focus();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                autoCompleteAbfahrtstafelnLV.Visible = false;
+            }
+        }
+
+        private void mainPanelMouseClick(object sender, MouseEventArgs e)
+        {
+            autoCompleteAbfahrtstafelnLV.Visible = false;
+        }
+
+        private void abfahrtstafelSuchenBtnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{ENTER}");
+            }
+        }
+
+        private void backBTNMouseClick(object sender, MouseEventArgs e)
+        {
+            Helper helper = Helper.Instance;
+            List<Control> controls = helper.getControls();
+            Panel mainPanel = helper.getPanel();
+            mainPanel.Controls.Clear();
+            foreach (Control control in controls)
+            {
+                mainPanel.Controls.Add(control);
+            }
+        }
+
+        private void Abfahrtstafeln_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

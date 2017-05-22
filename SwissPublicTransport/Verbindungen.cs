@@ -15,6 +15,7 @@ namespace SwissPublicTransport
     public partial class Verbindungen : UserControl
     {
         private Transport _transportAPI = new Transport();
+        private Panel mainPanel;
 
         /// <summary>
         /// Konstruktor für die Klasse Verbindungen
@@ -23,29 +24,33 @@ namespace SwissPublicTransport
         public Verbindungen(Panel mainPanel)
         {
             InitializeComponent();
+            this.mainPanel = mainPanel;
             verbindungenSuchresultatDG.Visible = false;
-            autoCompleteVerbindungenLV.Visible = false;
-            autoCompleteVerbindungenBis.Visible = false;
-            autoCompleteVerbindungenLV.View = View.SmallIcon;
-            autoCompleteVerbindungenBis.View = View.SmallIcon;
+            autoCompleteVerbindungenVonLV.Visible = false;
+            autoCompleteVerbindungenBisLV.Visible = false;
+            autoCompleteVerbindungenVonLV.View = View.SmallIcon;
+            autoCompleteVerbindungenBisLV.View = View.SmallIcon;
 
-            //Datums -und Zeitformat für die Verbindungssuche definieren
-            zeitPicker.Format = DateTimePickerFormat.Time;
-            zeitPicker.ShowUpDown = true;
-            verbindungenDtp.MinDate = DateTime.Today;
-            verbindungenDtp.Format = DateTimePickerFormat.Custom;
-            verbindungenDtp.CustomFormat = "dd-MM-yyyy";
+            //Datums -und Zeitformat für das UI definieren
+            zeitPickerDTP.Format = DateTimePickerFormat.Time;
+            zeitPickerDTP.ShowUpDown = true;
+            verbindungenDTP.MinDate = DateTime.Today;
+            verbindungenDTP.Format = DateTimePickerFormat.Custom;
+            verbindungenDTP.CustomFormat = "dd.MM.yyyy";
         }
 
         private void verbindungSuchenBtn_Click(object sender, EventArgs e)
         {
+            //Für die Optik das leere DataGridView verstecken im Falle, dass mehere Suchabfragen aufeinander erfolgen
+            verbindungenSuchresultatDG.Visible = false;
+
             //Benutzereingaben überprüfen um die Parameter für die API-Anfrage sicher zu stellen
-            if(verbindungenVonTB.Text.Length > 0 && verbindungenBisTB.Text.Length > 0)
+            if (verbindungenVonTB.Text.Length > 0 && verbindungenBisTB.Text.Length > 0)
             {
                 verbindungenSuchresultatDG.Rows.Clear();
-                DateTime zeit = Convert.ToDateTime(zeitPicker.Value.ToString());
-                String datum = verbindungenDtp.Value.ToShortDateString();
-                Connections suchResultat = _transportAPI.GetConnections(verbindungenVonTB.Text, verbindungenBisTB.Text, datum, zeit.ToString("HH:mm"));
+                DateTime zeit = Convert.ToDateTime(zeitPickerDTP.Value.ToString());
+                String datum = verbindungenDTP.Value.ToShortDateString();
+                Connections suchResultat = _transportAPI.GetConnectionsWithDate(verbindungenVonTB.Text, verbindungenBisTB.Text, datum, zeit.ToString("HH:mm"));
 
                 foreach (Connection connection in suchResultat.ConnectionList)
                 {
@@ -61,14 +66,34 @@ namespace SwissPublicTransport
                     row.Cells[0].Value = connection.From.Station.Name;
                     row.Cells[1].Value = connection.To.Station.Name;
                     row.Cells[2].Value = duration;
-                    row.Cells[3].Value = start.ToString("MM.dd -- HH:mm");
-                    row.Cells[4].Value = ziel.ToString("MM.dd -- HH:mm");
-                    row.Cells[5].Value = connection.From.Platform;
-                    row.Cells[6].Value = connection.To.Platform;
-
+                    row.Cells[3].Value = start.ToString("dd.MM -- HH:mm");
+                    row.Cells[4].Value = ziel.ToString("dd.MM -- HH:mm");
+                    if(connection.From.Platform == "")
+                    {
+                        row.Cells[5].Value = "-";
+                    }
+                    else
+                    {
+                        row.Cells[5].Value = connection.From.Platform;
+                    }
+                    if(connection.To.Platform == "")
+                    {
+                        row.Cells[6].Value = "-";
+                    }
+                    else
+                    {
+                        row.Cells[6].Value = connection.To.Platform;
+                    }
                     verbindungenSuchresultatDG.Rows.Add(row);
                 }
-                verbindungenSuchresultatDG.Visible = true;
+                if(suchResultat == null)
+                {
+                    MessageBox.Show("Es wurden keine Ergebnisse gefunden, versuchen sie es nochmals");
+                }
+                else
+                {
+                    verbindungenSuchresultatDG.Visible = true;
+                }
             }
             else
             {
@@ -78,12 +103,12 @@ namespace SwissPublicTransport
 
         private void verbindungenVonTB_TextChanged_1(object sender, EventArgs e)
         {
-            updateSuchergebnisse(sender, autoCompleteVerbindungenLV);     
+            updateSuchergebnisse(sender, autoCompleteVerbindungenVonLV);     
         }
 
         private void verbindungenBisTB_TextChanged(object sender, EventArgs e)
         {
-            updateSuchergebnisse(sender, autoCompleteVerbindungenBis);
+            updateSuchergebnisse(sender, autoCompleteVerbindungenBisLV);
         }
 
         private void updateSuchergebnisse(object sender, ListView lv)
@@ -122,62 +147,77 @@ namespace SwissPublicTransport
 
         private void autoCompleteVerbindungenMouseClick(object sender, MouseEventArgs e)
         {
-            verbindungenVonTB.Text = autoCompleteVerbindungenLV.FocusedItem.Text.ToString();
-            autoCompleteVerbindungenLV.Visible = false;
+            verbindungenVonTB.Text = autoCompleteVerbindungenVonLV.FocusedItem.Text.ToString();
+            autoCompleteVerbindungenVonLV.Visible = false;
+            verbindungenBisTB.Focus();
         }
 
         private void autoCompleteVerbindungenBisMouseClick(object sender, MouseEventArgs e)
         {
-            verbindungenBisTB.Text = autoCompleteVerbindungenBis.FocusedItem.Text.ToString();
-            autoCompleteVerbindungenBis.Visible = false;
+            verbindungenBisTB.Text = autoCompleteVerbindungenBisLV.FocusedItem.Text.ToString();
+            autoCompleteVerbindungenBisLV.Visible = false;
+            verbindungSuchenBtn.Focus();
         }
 
         private void benutzerSteuerungEnter(object sender, EventArgs e)
         {
-            autoCompleteVerbindungenLV.Visible = false;
+            autoCompleteVerbindungenVonLV.Visible = false;
         }
 
         private void verbindungenVonKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down && autoCompleteVerbindungenLV.Items.Count > 0)
+            if (e.KeyCode == Keys.Down && autoCompleteVerbindungenVonLV.Items.Count > 0)
             {
-                autoCompleteVerbindungenLV.Select();
-                autoCompleteVerbindungenLV.Items[0].Selected = true;
+                autoCompleteVerbindungenVonLV.Select();
+                autoCompleteVerbindungenVonLV.Items[0].Selected = true;
             }
-
-            if (e.KeyCode == Keys.Enter && autoCompleteVerbindungenLV.Items.Count > 0 && autoCompleteVerbindungenLV.SelectedItems.Count > 0)
+            if (e.KeyCode == Keys.Tab)
             {
-                verbindungenVonTB.Text = autoCompleteVerbindungenLV.FocusedItem.Text.ToString();
-                autoCompleteVerbindungenLV.Visible = false;
+                autoCompleteVerbindungenVonLV.Visible = false;
+                verbindungenBisTB.Focus();
             }
-            else
+            if (e.KeyCode == Keys.Enter && autoCompleteVerbindungenVonLV.Items.Count > 0 && autoCompleteVerbindungenVonLV.SelectedItems.Count > 0)
             {
-                autoCompleteVerbindungenLV.Visible = false;
+                verbindungenVonTB.Text = autoCompleteVerbindungenVonLV.FocusedItem.Text.ToString();
+                autoCompleteVerbindungenVonLV.Visible = false;
+                verbindungenBisTB.Focus();
+            }
+            else if(e.KeyCode == Keys.Enter)
+            {
+                autoCompleteVerbindungenVonLV.Visible = false;
+                verbindungenBisTB.Focus();
             }
         }
 
         private void verbindungenBisTBKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down && autoCompleteVerbindungenBis.Items[0].Text.Length > 0)
+            if (e.KeyCode == Keys.Down && autoCompleteVerbindungenBisLV.Items[0].Text.Length > 0)
             {
-                autoCompleteVerbindungenBis.Select();
-                autoCompleteVerbindungenBis.Items[0].Selected = true;
+                autoCompleteVerbindungenBisLV.Select();
+                autoCompleteVerbindungenBisLV.Items[0].Selected = true;
             }
-            if (e.KeyCode == Keys.Enter && autoCompleteVerbindungenBis.Items.Count > 0 && autoCompleteVerbindungenBis.SelectedItems.Count > 0)
+            if(e.KeyCode == Keys.Tab)
             {
-                verbindungenBisTB.Text = autoCompleteVerbindungenBis.FocusedItem.Text.ToString();
-                autoCompleteVerbindungenBis.Visible = false;
+                autoCompleteVerbindungenBisLV.Visible = false;
+                verbindungenDTP.Focus();
             }
-            else
+            if (e.KeyCode == Keys.Enter && autoCompleteVerbindungenBisLV.Items.Count > 0 && autoCompleteVerbindungenBisLV.SelectedItems.Count > 0)
             {
-                autoCompleteVerbindungenBis.Visible = false;
+                verbindungenBisTB.Text = autoCompleteVerbindungenBisLV.FocusedItem.Text.ToString();
+                autoCompleteVerbindungenBisLV.Visible = false;
+                verbindungenDTP.Focus();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                autoCompleteVerbindungenBisLV.Visible = false;
+                verbindungenDTP.Focus();
             }
         }
 
         private void verbindungSuchenBTNEnter(object sender, EventArgs e)
         {
-            autoCompleteVerbindungenLV.Visible = false;
-            autoCompleteVerbindungenBis.Visible = false;
+            autoCompleteVerbindungenVonLV.Visible = false;
+            autoCompleteVerbindungenBisLV.Visible = false;
         }
 
         private void stationenWechselnClick(object sender, EventArgs e)
@@ -187,10 +227,42 @@ namespace SwissPublicTransport
                 String vonTB = verbindungenVonTB.Text;
                 verbindungenVonTB.Text = verbindungenBisTB.Text;
                 verbindungenBisTB.Text = vonTB;
+                verbindungSuchenBTNEnter("object", e);
             }
             else
             {
                 MessageBox.Show("Bitte füllen Sie zuerst die Felder \"Von:\" und \"Bis:\" aus.");
+            }
+        }
+
+        private void mainPanelMouseClick(object sender, MouseEventArgs e)
+        {
+            autoCompleteVerbindungenVonLV.Visible = false;
+            autoCompleteVerbindungenBisLV.Visible = false;
+        }
+
+        private void verbindungSuchenBtnKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{ENTER}");
+            }
+        }
+
+        private void verbindungenDTPEnter(object sender, EventArgs e)
+        {
+            autoCompleteVerbindungenBisLV.Visible = false;
+        }
+
+        private void backBTNClick(object sender, EventArgs e)
+        {
+            Helper helper = Helper.Instance;
+            List<Control> controls = helper.getControls();
+            Panel mainPanel = helper.getPanel();
+            mainPanel.Controls.Clear();
+            foreach(Control control in controls)
+            {
+                mainPanel.Controls.Add(control);
             }
         }
     } 

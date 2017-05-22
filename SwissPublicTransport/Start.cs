@@ -15,18 +15,22 @@ namespace SwissPublicTransport
         public Start()
         {
             InitializeComponent();
+            Helper helper = Helper.Instance;
+            helper.setMainPanel(this.mainPanel);
+            helper.setControls(this.verbindungBtn);
+            helper.setControls(this.abfahrtstafelBtn);
         }
 
         private void verbindungBtn_Click(object sender, EventArgs e)
         {
-            UserControl verbindungen = new Verbindungen(mainPanel);
+            UserControl verbindungen = new Verbindungen(Helper.Instance.getPanel());
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(verbindungen);
         }
 
         private void abfahrtstafelBtn_Click(object sender, EventArgs e)
         {
-            UserControl abfahrtstafeln = new Abfahrtstafeln(mainPanel);
+            UserControl abfahrtstafeln = new Abfahrtstafeln(Helper.Instance.getPanel());
             mainPanel.Controls.Clear();
             mainPanel.Controls.Add(abfahrtstafeln);
         }
