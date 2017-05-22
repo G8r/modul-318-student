@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SwissPublicTransport
 {
-    public partial class Start : Form
+    public partial class  Start : Form
     {
         public Start()
         {
@@ -26,7 +26,9 @@ namespace SwissPublicTransport
 
         private void abfahrtstafelBtn_Click(object sender, EventArgs e)
         {
-
+            UserControl abfahrtstafeln = new Abfahrtstafeln(mainPanel);
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(abfahrtstafeln);
         }
     }
 }

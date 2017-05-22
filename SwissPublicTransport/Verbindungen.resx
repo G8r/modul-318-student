@@ -138,4 +138,45 @@
   <metadata name="bGleis.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="vonStation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="bisStation.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="dauer.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="abfahrt.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ankunft.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="vGleis.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="bGleis.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="swapButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABGdBTUEAALGPC/xhBQAAAxdJREFUeF7t
+        mlmq1GAQhftN3IPzqyjisBZBcRGiKPrkBkRxDyLqBhR347QABxxQ9HzQPzTNSXcqnaSi1AcfXC63TxeH
+        TJfUqiiKoiiKoiiKovivOCPvyzfyo/y59sP6d/fkKTkFD9YuktPypfwt/+yRv3kuT8qxoJiWv7iSbsiv
+        crOEPn6R1+WhbJbTXExJd+X2cFFvyaG4cprpJXHkuMGGeE1G2VVOM60krjlDTqsuP8sTsi99ymmmlPRC
+        umHwm3woL8ojay/JR/K7dJ/BZ7IPkXKas5bErbzrbvVWnpVdnJPvpfssmfvubEPKac5WEs85bgCOnF3l
+        NM7LH9JlcNHv4pBymrOUxAOf+3JOq748li7jtXSMUU5z8pJ4QnZfzDWnL5ely3gntxmznOakJfGvg/tS
+        LsZ9OSpdBqfeJlOU05ysJPdlGMVlYBSXgWm4YTCKy8AoLgPTcMNgFJeBUVwGpuGGwSguA6O4DEzDDYNR
+        XAZGcRmYhhsGo7gMjOIyMA03DEZxGRjFZWAabhiM4jIwisvANNwwGMVlYBSXgWm4YTCKy8AoLgPTcMNg
+        FJeBUVwGpuGGwSguA6O4DEzDDYNRXAZGcRmYhhsGo7gMjOIyMA03DEZxGRjFZWAabhiM4jIwisvANNww
+        GMVlYBSXgWm4YTCKy8AoLgPTcMNgFJeBUVwGpuGGwSguA6O4DEzDDYNRXAZGcRk4CXO+RZjz7cioTFGS
+        e8XC1pn7W97j9+WKdBnu/dqojFmSKwe63tCy5NCXJ9JlvJKTM0ZJXeUA+4ruM2yAsOSwjwuy6x3/HTkL
+        h5S0qxxgmbNrS4QNEJYcuqCcrlP0l4zsGh3MkJL2ldNgmdN9HjmSWHLgPT4XY+Saw2nVdeTgUzk7kZL6
+        lgPsA7HM6XKG+Ekekyn0KSlSToNNV5c1xKsylV0lDSmncVu6zIg35SJwJR1SToNNV5Y5t7P3yWmVfuRs
+        s1nSGOU0uPuwzNlnY5+7FRfk43KRUMyY5WzCxZt9RVbyeCrmroX8zEMgzzmz3sqLoiiKoiiKoiiKoij+
+        WVarvwTm6YWCsfm2AAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>
