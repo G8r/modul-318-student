@@ -179,5 +179,14 @@ namespace SwissPublicTransport
                 mainPanel.Controls.Add(control);
             }
         }
+
+        private void verbindungenDTPKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                abfahrtstafelSuchenBtn.Focus();
+                SendKeys.Send("{ENTER}");
+            }
+        }
     }
 }

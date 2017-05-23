@@ -287,5 +287,23 @@ namespace SwissPublicTransport
                 mainPanel.Controls.Add(control);
             }
         }
+
+        private void verbindungenDTPKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                verbindungSuchenBtn.Focus();
+                SendKeys.Send("{ENTER}");
+            }
+        }
+
+        private void zeitPickerDTPKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                verbindungSuchenBtn.Focus();
+                SendKeys.Send("{ENTER}");
+            }
+        }
     } 
 }

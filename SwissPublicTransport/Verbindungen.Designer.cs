@@ -165,6 +165,7 @@
             this.verbindungenDTP.Size = new System.Drawing.Size(200, 31);
             this.verbindungenDTP.TabIndex = 2;
             this.verbindungenDTP.Enter += new System.EventHandler(this.verbindungenDTPEnter);
+            this.verbindungenDTP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungenDTPKeyDown);
             // 
             // verbindungenDatumLbl
             // 
@@ -220,6 +221,7 @@
             this.zeitPickerDTP.Name = "zeitPickerDTP";
             this.zeitPickerDTP.Size = new System.Drawing.Size(123, 31);
             this.zeitPickerDTP.TabIndex = 3;
+            this.zeitPickerDTP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.zeitPickerDTPKeyDown);
             // 
             // swapButton
             // 

@@ -80,6 +80,7 @@
             this.verbindungenDTP.Name = "verbindungenDTP";
             this.verbindungenDTP.Size = new System.Drawing.Size(200, 31);
             this.verbindungenDTP.TabIndex = 1;
+            this.verbindungenDTP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.verbindungenDTPKeyDown);
             // 
             // abfahrtstafelSuchenBtn
             // 
