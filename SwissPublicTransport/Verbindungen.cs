@@ -17,10 +17,24 @@ namespace SwissPublicTransport
         private Transport _transportAPI = new Transport();
         private Panel mainPanel;
 
-        /// <summary>
-        /// Konstruktor für die Klasse Verbindungen
-        /// </summary>
-        /// <param name="mainPanel"></param>
+
+        public Verbindungen()
+        {
+            InitializeComponent();
+            verbindungenSuchresultatDG.Visible = false;
+            autoCompleteVerbindungenVonLV.Visible = false;
+            autoCompleteVerbindungenBisLV.Visible = false;
+            autoCompleteVerbindungenVonLV.View = View.SmallIcon;
+            autoCompleteVerbindungenBisLV.View = View.SmallIcon;
+
+            //Datums -und Zeitformat für das UI definieren
+            zeitPickerDTP.Format = DateTimePickerFormat.Time;
+            zeitPickerDTP.ShowUpDown = true;
+            verbindungenDTP.MinDate = DateTime.Today;
+            verbindungenDTP.Format = DateTimePickerFormat.Custom;
+            verbindungenDTP.CustomFormat = "dd.MM.yyyy";
+        }
+
         public Verbindungen(Panel mainPanel)
         {
             InitializeComponent();
@@ -37,6 +51,11 @@ namespace SwissPublicTransport
             verbindungenDTP.MinDate = DateTime.Today;
             verbindungenDTP.Format = DateTimePickerFormat.Custom;
             verbindungenDTP.CustomFormat = "dd.MM.yyyy";
+        }
+
+        public IButtonControl getAcceptButton()
+        {
+            return this.verbindungSuchenBtn;
         }
 
         private void verbindungSuchenBtn_Click(object sender, EventArgs e)

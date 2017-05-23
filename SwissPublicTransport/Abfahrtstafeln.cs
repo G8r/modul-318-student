@@ -15,16 +15,25 @@ namespace SwissPublicTransport
     {
         private Transport _transportAPI = new Transport();
 
-        /// <summary>
-        /// Konstruktor der Abfahrstafeln Klasse
-        /// </summary>
-        /// <param name="mainPanel"></param>
+        public Abfahrtstafeln()
+        {
+            InitializeComponent();
+            autoCompleteAbfahrtstafelnLV.View = View.SmallIcon;
+            autoCompleteAbfahrtstafelnLV.Visible = false;
+            abfahrtstafelnSuchresultatDG.Visible = false;
+        }
+
         public Abfahrtstafeln(Panel mainPanel)
         {
             InitializeComponent();
             autoCompleteAbfahrtstafelnLV.View = View.SmallIcon;
             autoCompleteAbfahrtstafelnLV.Visible = false;
             abfahrtstafelnSuchresultatDG.Visible = false;
+        }
+
+        public IButtonControl getAcceptButton()
+        {
+            return this.abfahrtstafelSuchenBtn;
         }
 
         private void abfahrtstafelVonTBTextChanged(object sender, EventArgs e)
