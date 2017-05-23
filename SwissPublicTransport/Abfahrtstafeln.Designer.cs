@@ -79,11 +79,11 @@
             this.verbindungenDTP.MinDate = new System.DateTime(2017, 5, 17, 0, 0, 0, 0);
             this.verbindungenDTP.Name = "verbindungenDTP";
             this.verbindungenDTP.Size = new System.Drawing.Size(200, 31);
-            this.verbindungenDTP.TabIndex = 12;
+            this.verbindungenDTP.TabIndex = 1;
             // 
             // abfahrtstafelSuchenBtn
             // 
-            this.abfahrtstafelSuchenBtn.Location = new System.Drawing.Point(924, 335);
+            this.abfahrtstafelSuchenBtn.Location = new System.Drawing.Point(926, 338);
             this.abfahrtstafelSuchenBtn.Name = "abfahrtstafelSuchenBtn";
             this.abfahrtstafelSuchenBtn.Size = new System.Drawing.Size(237, 43);
             this.abfahrtstafelSuchenBtn.TabIndex = 2;
@@ -122,16 +122,16 @@
             this.name,
             this.abfahrtsZeit,
             this.richtung});
-            this.abfahrtstafelnSuchresultatDG.Location = new System.Drawing.Point(413, 404);
+            this.abfahrtstafelnSuchresultatDG.Location = new System.Drawing.Point(524, 498);
             this.abfahrtstafelnSuchresultatDG.Name = "abfahrtstafelnSuchresultatDG";
             this.abfahrtstafelnSuchresultatDG.RowHeadersVisible = false;
             this.abfahrtstafelnSuchresultatDG.RowHeadersWidth = 300;
             this.abfahrtstafelnSuchresultatDG.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.abfahrtstafelnSuchresultatDG.RowTemplate.Height = 45;
             this.abfahrtstafelnSuchresultatDG.RowTemplate.ReadOnly = true;
-            this.abfahrtstafelnSuchresultatDG.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.abfahrtstafelnSuchresultatDG.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.abfahrtstafelnSuchresultatDG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.abfahrtstafelnSuchresultatDG.Size = new System.Drawing.Size(602, 485);
+            this.abfahrtstafelnSuchresultatDG.Size = new System.Drawing.Size(627, 368);
             this.abfahrtstafelnSuchresultatDG.TabIndex = 19;
             this.abfahrtstafelnSuchresultatDG.TabStop = false;
             // 
@@ -166,9 +166,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.autoCompleteAbfahrtstafelnLV);
             this.Controls.Add(this.backBTN);
             this.Controls.Add(this.abfahrtstafelnSuchresultatDG);
-            this.Controls.Add(this.autoCompleteAbfahrtstafelnLV);
             this.Controls.Add(this.abfahrtstafelVonTB);
             this.Controls.Add(this.verbindungenDatumLbl);
             this.Controls.Add(this.verbindungenDTP);
@@ -177,7 +177,6 @@
             this.Controls.Add(this.abfahrtstafelLBL);
             this.Name = "Abfahrtstafeln";
             this.Size = new System.Drawing.Size(1478, 927);
-            this.Load += new System.EventHandler(this.Abfahrtstafeln_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mainPanelMouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.abfahrtstafelnSuchresultatDG)).EndInit();
             this.ResumeLayout(false);

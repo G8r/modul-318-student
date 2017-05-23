@@ -39,14 +39,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8D0DEB7C27303A6A5796E947BBCF09CD"
-        "OwnerKey" = "8:_11D73F5C401643F891B6B347BB0F62D6"
+        "MsmKey" = "8:_853DA62C5115464896C58DCBE2EA61AA"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_8D0DEB7C27303A6A5796E947BBCF09CD"
+        "MsmKey" = "8:_8D0DEB7C27303A6A5796E947BBCF09CD"
+        "OwnerKey" = "8:_11D73F5C401643F891B6B347BB0F62D6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -67,6 +67,12 @@
         "OwnerKey" = "8:_30BCE941D0C7A905656B9F914D502164"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_8D0DEB7C27303A6A5796E947BBCF09CD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -85,6 +91,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -101,6 +123,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -192,6 +230,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_853DA62C5115464896C58DCBE2EA61AA"
+            {
+            "SourcePath" = "8:..\\..\\..\\Downloads\\schweiz_icon.ico"
+            "TargetName" = "8:app.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_D1EF9616083D4F6F8E1DC42FFF0FDFDD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8D0DEB7C27303A6A5796E947BBCF09CD"
             {
             "AssemblyRegister" = "3:1"
@@ -241,7 +299,7 @@
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_69CBC9490B7F4F348DD4810E2E556D0D"
                     {
                     "Name" = "8:SwissPublicTransport"
-                    "AlwaysCreate" = "11:FALSE"
+                    "AlwaysCreate" = "11:TRUE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_D88ABB51C47C4A96A7B675352031A4B5"
@@ -254,7 +312,7 @@
             "{1525181F-901A-416C-8A58-119130FE478E}:_579D47EB472A4620BC57A064862EA1CA"
             {
             "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:DesktopFolder"
@@ -291,7 +349,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Setup"
         "ProductCode" = "8:{0A3C9F00-AF36-4697-A998-7B7D0453CDB5}"
-        "PackageCode" = "8:{9A9E83EF-783F-46C5-943F-5F020CE90B80}"
+        "PackageCode" = "8:{F401DF59-4BD3-4881-A854-8E859D19A062}"
         "UpgradeCode" = "8:{C8291628-8B3C-410D-9BA7-30D02B7FD1BA}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -411,7 +469,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2F6DD015A7774C788A7E617C8C2FC940"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_29B131FBEDFF44EA97FFA65AE5F726F0"
             {
             "Name" = "8:SwissPublicTransport"
             "Arguments" = "8:"
@@ -419,13 +477,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_69CBC9490B7F4F348DD4810E2E556D0D"
-            "Folder" = "8:_69CBC9490B7F4F348DD4810E2E556D0D"
-            "WorkingFolder" = "8:_0464629E52124DA7A8A6FBB700A2EE03"
-            "Icon" = "8:"
+            "Target" = "8:_11D73F5C401643F891B6B347BB0F62D6"
+            "Folder" = "8:_D1EF9616083D4F6F8E1DC42FFF0FDFDD"
+            "WorkingFolder" = "8:_D1EF9616083D4F6F8E1DC42FFF0FDFDD"
+            "Icon" = "8:_853DA62C5115464896C58DCBE2EA61AA"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_314B0F88C8F74F1686E8D3DFE9D1E01A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4C65FCFECA8D4D85853C741026DA1984"
             {
             "Name" = "8:SwissPublicTransport"
             "Arguments" = "8:"
@@ -433,10 +491,24 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_579D47EB472A4620BC57A064862EA1CA"
+            "Target" = "8:_11D73F5C401643F891B6B347BB0F62D6"
             "Folder" = "8:_579D47EB472A4620BC57A064862EA1CA"
-            "WorkingFolder" = "8:_579D47EB472A4620BC57A064862EA1CA"
-            "Icon" = "8:"
+            "WorkingFolder" = "8:_D1EF9616083D4F6F8E1DC42FFF0FDFDD"
+            "Icon" = "8:_853DA62C5115464896C58DCBE2EA61AA"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B30CCCB266294CBFA5901727018E0B16"
+            {
+            "Name" = "8:SwissPublicTransport"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_11D73F5C401643F891B6B347BB0F62D6"
+            "Folder" = "8:_69CBC9490B7F4F348DD4810E2E556D0D"
+            "WorkingFolder" = "8:_D1EF9616083D4F6F8E1DC42FFF0FDFDD"
+            "Icon" = "8:_853DA62C5115464896C58DCBE2EA61AA"
             "Feature" = "8:"
             }
         }

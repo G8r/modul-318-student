@@ -69,41 +69,55 @@ namespace SwissPublicTransport
             //Für die Optik das leere DataGridView verstecken im Falle, dass mehere Suchabfragen aufeinander erfolgen
             autoCompleteAbfahrtstafelnLV.Visible = false;
 
-            if(abfahrtstafelVonTB.Text.Length > 0)
+            try
             {
-                var stationen = _transportAPI.GetStations(abfahrtstafelVonTB.Text);
-                string stationenId = stationen.StationList[0].Id;
+                abfahrtstafelnSuchresultatDG.Rows.Clear();
 
-                var suchResultat = _transportAPI.GetStationBoard(abfahrtstafelVonTB.Text, stationenId).Entries;
-
-                foreach (var station in suchResultat)
+                if (abfahrtstafelVonTB.Text.Length > 0)
                 {
-                    DateTime abfahrtZeitDT = Convert.ToDateTime(station.Stop.Departure);
-                    String abfahrtsZeitST = abfahrtZeitDT.ToString("HH:mm");
+                    var stationen = _transportAPI.GetStations(abfahrtstafelVonTB.Text);
+                    string stationenId = stationen.StationList[0].Id;
 
-                    DataGridViewRow rowDGR = new DataGridViewRow();
+                    var suchResultat = _transportAPI.GetStationBoard(abfahrtstafelVonTB.Text, stationenId).Entries;
 
-                    rowDGR.CreateCells(abfahrtstafelnSuchresultatDG);
-                    rowDGR.Cells[0].Value = station.Category;
-                    rowDGR.Cells[1].Value = abfahrtsZeitST;
-                    rowDGR.Cells[2].Value = station.To;
+                    foreach (var station in suchResultat)
+                    {
+                        DateTime abfahrtZeitDT = Convert.ToDateTime(station.Stop.Departure);
+                        String abfahrtsZeitST = abfahrtZeitDT.ToString("HH:mm");
 
-                    abfahrtstafelnSuchresultatDG.Rows.Add(rowDGR);
-                }
-                if (suchResultat == null)
-                {
-                    MessageBox.Show("Es wurden keine Ergebnisse gefunden, versuchen sie es nochmals");
+                        DataGridViewRow rowDGR = new DataGridViewRow();
+
+                        rowDGR.CreateCells(abfahrtstafelnSuchresultatDG);
+                        rowDGR.Cells[0].Value = station.Category;
+                        rowDGR.Cells[1].Value = abfahrtsZeitST;
+                        rowDGR.Cells[2].Value = station.To;
+
+                        abfahrtstafelnSuchresultatDG.Rows.Add(rowDGR);
+                    }
+                    if (suchResultat == null)
+                    {
+                        MessageBox.Show("Es wurden keine Ergebnisse gefunden, versuchen sie es nochmals");
+                    }
+                    else
+                    {
+                        abfahrtstafelnSuchresultatDG.Visible = true;
+                    }
                 }
                 else
                 {
-                    abfahrtstafelnSuchresultatDG.Visible = true;
+                    MessageBox.Show("Bitte geben Sie die Station ein nach welcher Sie suchen wollen");
                 }
+            }
+            catch (System.Net.WebException)
+            {
+
             }
         }
 
         private void autoCompleteAnsichtAbfahrtstafelnMouseClick(object sender, MouseEventArgs e)
         {
-            abfahrtstafelVonTB.Text = autoCompleteAbfahrtstafelnLV.SelectedItems[0].ToString();
+            abfahrtstafelVonTB.Text = autoCompleteAbfahrtstafelnLV.FocusedItem.Text.ToString();
+            autoCompleteAbfahrtstafelnLV.Visible = false;
         }
 
         private void abfahrtstafelVonTBKeyDown(object sender, KeyEventArgs e) 
@@ -127,6 +141,7 @@ namespace SwissPublicTransport
             else if (e.KeyCode == Keys.Enter)
             {
                 autoCompleteAbfahrtstafelnLV.Visible = false;
+                verbindungenDTP.Focus();
             }
         }
 
@@ -153,11 +168,6 @@ namespace SwissPublicTransport
             {
                 mainPanel.Controls.Add(control);
             }
-        }
-
-        private void Abfahrtstafeln_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -50,6 +50,7 @@
             this.zeitPickerDTP = new System.Windows.Forms.DateTimePicker();
             this.swapButton = new System.Windows.Forms.Button();
             this.backBTN = new System.Windows.Forms.Button();
+            this.zeitLBL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.verbindungenSuchresultatDG)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             // 
             // verbindungSuchenBtn
             // 
-            this.verbindungSuchenBtn.Location = new System.Drawing.Point(861, 338);
+            this.verbindungSuchenBtn.Location = new System.Drawing.Point(887, 338);
             this.verbindungSuchenBtn.Name = "verbindungSuchenBtn";
             this.verbindungSuchenBtn.Size = new System.Drawing.Size(237, 43);
             this.verbindungSuchenBtn.TabIndex = 4;
@@ -244,6 +245,15 @@
             this.backBTN.UseVisualStyleBackColor = false;
             this.backBTN.Click += new System.EventHandler(this.backBTNClick);
             // 
+            // zeitLBL
+            // 
+            this.zeitLBL.AutoSize = true;
+            this.zeitLBL.Location = new System.Drawing.Point(556, 310);
+            this.zeitLBL.Name = "zeitLBL";
+            this.zeitLBL.Size = new System.Drawing.Size(54, 25);
+            this.zeitLBL.TabIndex = 11;
+            this.zeitLBL.Text = "Zeit:";
+            // 
             // Verbindungen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -262,6 +272,7 @@
             this.Controls.Add(this.verbindungenBisLbl);
             this.Controls.Add(this.verbindungenVonLbl);
             this.Controls.Add(this.verbindungenLbl);
+            this.Controls.Add(this.zeitLBL);
             this.MaximumSize = new System.Drawing.Size(1478, 927);
             this.MinimumSize = new System.Drawing.Size(1478, 927);
             this.Name = "Verbindungen";
@@ -296,6 +307,7 @@
         private System.Windows.Forms.DateTimePicker zeitPickerDTP;
         private System.Windows.Forms.Button swapButton;
         private System.Windows.Forms.Button backBTN;
+        private System.Windows.Forms.Label zeitLBL;
     }
 
    
