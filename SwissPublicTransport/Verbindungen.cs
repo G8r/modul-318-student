@@ -204,7 +204,8 @@ namespace SwissPublicTransport
             else if(e.KeyCode == Keys.Enter)
             {
                 autoCompleteVerbindungenVonLV.Visible = false;
-                verbindungenBisTB.Focus();
+                verbindungSuchenBtn.Focus();
+                SendKeys.Send("{ENTER}");
             }
         }
 
@@ -224,12 +225,14 @@ namespace SwissPublicTransport
             {
                 verbindungenBisTB.Text = autoCompleteVerbindungenBisLV.FocusedItem.Text.ToString();
                 autoCompleteVerbindungenBisLV.Visible = false;
-                verbindungenDTP.Focus();
+                verbindungSuchenBtn.Focus();
+                SendKeys.Send("{ENTER}");
             }
             else if (e.KeyCode == Keys.Enter)
             {
                 autoCompleteVerbindungenBisLV.Visible = false;
-                verbindungenDTP.Focus();
+                verbindungSuchenBtn.Focus();
+                SendKeys.Send("{ENTER}");
             }
         }
 

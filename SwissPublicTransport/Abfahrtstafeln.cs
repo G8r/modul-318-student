@@ -150,7 +150,8 @@ namespace SwissPublicTransport
             else if (e.KeyCode == Keys.Enter)
             {
                 autoCompleteAbfahrtstafelnLV.Visible = false;
-                verbindungenDTP.Focus();
+                abfahrtstafelSuchenBtn.Focus();
+                SendKeys.Send("{ENTER}");
             }
         }
 
